@@ -2,7 +2,7 @@ import { Router } from 'express';
 import {
   getUser, updateUserInfo, updateUserAvatar, getUsers, getCurrentUser,
 } from '../controllers/users';
-import { validateObjId, validateAvatar, validateProfile } from '../middlewares/validatons';
+import { validateObjId, validateAvatar, validateProfile } from '../middlewares/validators';
 
 const router = Router();
 
