@@ -8,7 +8,7 @@ import {
 } from '../controllers/users';
 import NotFoundError from '../errors/not-found-error';
 import auth from '../middlewares/auth';
-import { validateAuthentication, validateUserBody } from '../middlewares/validatons';
+import { validateAuthentication, validateUserBody } from '../middlewares/validators';
 import cardRouter from './cards';
 import userRouter from './users';
 

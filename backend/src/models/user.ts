@@ -2,7 +2,7 @@ import bcrypt from 'bcryptjs';
 import mongoose, { Document, HydratedDocument, Model } from 'mongoose';
 import validator from 'validator';
 import UnauthorizedError from '../errors/unauthorized-error';
-import { urlRegExp } from '../middlewares/validatons';
+import { urlRegExp } from '../middlewares/validators';
 
 interface IUser extends Document {
   name: string;

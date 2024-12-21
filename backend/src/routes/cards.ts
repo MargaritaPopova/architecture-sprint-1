@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { validateObjId, validateCardBody } from '../middlewares/validatons';
+import { validateObjId, validateCardBody } from '../middlewares/validators';
 
 const router = Router();
 const {

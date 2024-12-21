@@ -1,5 +1,5 @@
 import mongoose, { ObjectId } from 'mongoose';
-import { urlRegExp } from '../middlewares/validatons';
+import { urlRegExp } from '../middlewares/validators';
 
 interface ICard {
   name: string;
