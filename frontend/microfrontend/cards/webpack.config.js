@@ -69,6 +69,9 @@ module.exports = (_, argv) => ({
       },
       exposes: {
         './CardsControl': './src/components/CardsControl.js',
+        './AddPlacePopup': './src/components/AddPlacePopup.js',
+        './Card': './src/components/Card.js',
+        './ImagePopup': './src/components/ImagePopup.js',
        },
       shared: {
         ...deps,

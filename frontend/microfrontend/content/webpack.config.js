@@ -69,6 +69,10 @@ module.exports = (_, argv) => ({
       },
        exposes: {
         './ContentControl': './src/components/ContentControl.js',
+        './Footer': './src/components/Footer.js',
+        './Header': './src/components/Header.js',
+        './InfoTooltip': './src/components/InfoTooltip.js',
+        './PopupWithForm': './src/components/PopupWithForm.js',
        },
       shared: {
         ...deps,

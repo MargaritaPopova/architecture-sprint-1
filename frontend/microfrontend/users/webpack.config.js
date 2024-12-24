@@ -69,6 +69,10 @@ module.exports = (_, argv) => ({
       },
        exposes: {
         './UsersControl': './src/components/UsersControl.js',
+        './EditAvatarPopup': './src/components/EditAvatarPopup.js',
+        './EditProfilePopup': './src/components/EditProfilePopup.js',
+        './Login': './src/components/Login.js',
+        './Register': './src/components/Register.js',
        },
       shared: {
         ...deps,
