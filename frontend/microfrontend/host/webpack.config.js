@@ -17,7 +17,7 @@ module.exports = (_, argv) => ({
   },
 
   devServer: {
-    port: 8080,
+    port: 3000,
     historyApiFallback: true,
     watchFiles: [path.resolve(__dirname, 'src')],
     onListening: function (devServer) {
@@ -65,11 +65,16 @@ module.exports = (_, argv) => ({
       name: "host",
       filename: "remoteEntry.js",
       remotes: {
-        'users': 'users@http://localhost:8081/remoteEntry.js',
-        'cards': 'cards@http://localhost:8083/remoteEntry.js',
-        'content': 'content@http://localhost:8082/remoteEntry.js',
+        users: 'users@http://localhost:3001/remoteEntry.js',
+        cards: 'cards@http://localhost:3002/remoteEntry.js',
+        content: 'content@http://localhost:3003/remoteEntry.js',
       },
-      exposes: {},
+      exposes: {
+        './Main': './src/components/Main.js',
+        './ProtectedRoute': './src/components/ProtectedRoute.js',
+        "./vendor": "./src/vendor",
+        './CurrentUserContext': './src/contexts/CurrentUserContext.js',
+       },
       shared: {
         ...deps,
         react: {

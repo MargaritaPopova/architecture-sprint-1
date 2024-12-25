@@ -17,7 +17,7 @@ module.exports = (_, argv) => ({
   },
 
   devServer: {
-    port: 8082,
+    port: 3002,
     historyApiFallback: true,
     watchFiles: [path.resolve(__dirname, 'src')],
     onListening: function (devServer) {
@@ -65,10 +65,10 @@ module.exports = (_, argv) => ({
       name: "content",
       filename: "remoteEntry.js",
       remotes: {
-        host: "host@http://localhost:8080/remoteEntry.js",
+        host: "host@http://localhost:3000/remoteEntry.js",
       },
        exposes: {
-        './ContentControl': './src/components/ContentControl.js',
+        './ContentControl': './src/App.jsx',
         './Footer': './src/components/Footer.js',
         './Header': './src/components/Header.js',
         './InfoTooltip': './src/components/InfoTooltip.js',

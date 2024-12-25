@@ -16,7 +16,7 @@
     "start": "react-scripts --openssl-legacy-provider start",
     "build": "react-scripts --openssl-legacy-provider build",
     "test": "react-scripts test",
-    "test:microfrontend": "npx jest ./index.spec.js",
+    "test:microfrontend": "npx jest host/index.spec.js",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {

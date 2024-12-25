@@ -1,0 +1,97 @@
+services:
+
+  mongo:
+    image: mongo
+    restart: always
+    logging:
+      driver: none
+    healthcheck:
+      test:  echo 'db.runCommand("ping").ok' | mongosh localhost:27017/test --quiet
+      interval: 10s
+      timeout: 10s
+      retries: 5
+      start_period: 10s
+
+#  backend-test:
+#    build:
+#      context: ../backend
+#      dockerfile: ../Dockerfile.backend
+#    environment:
+#      DB_ADDRESS: mongodb://mongo:27017/mestodb
+#    command: npm run lint
+#    restart: 'no'
+#    depends_on:
+#      mongo:
+#        condition: service_healthy
+
+  backend:
+    build:
+      context: ../backend
+      dockerfile: Dockerfile.backend
+    environment:
+      DB_ADDRESS: mongodb://mongo:27017/mestodb
+    depends_on:
+      mongo:
+        condition: service_healthy
+    ports:
+      - 8080:8080
+    healthcheck:
+      interval: 10s
+      timeout: 2s 
+      start_period: 15s 
+      retries: 5 
+      test: node healthcheck.js
+
+#  frontend-test:
+#    build:
+#      context: ..
+#      dockerfile: ../Dockerfile.frontend
+#    command: yarn test:microfrontend
+#    restart: 'no'
+#    environment:
+#          CI: true
+
+  host:
+    build:
+      context: ./microfrontend/host
+      dockerfile: Dockerfile.frontend
+    ports:
+      - "3000:3000"
+    depends_on:
+      backend:
+        condition: service_healthy
+      users:
+        condition: service_started
+      cards:
+        condition: service_started
+      content:
+        condition: service_started
+    environment:
+      - NODE_ENV=development
+
+  users:
+    build:
+      context: ./microfrontend/users
+      dockerfile: Dockerfile.frontend
+    ports:
+      - "3001:3001"
+    environment:
+      - NODE_ENV=development
+
+  cards:
+    build:
+      context: ./microfrontend/cards
+      dockerfile: Dockerfile.frontend
+    ports:
+      - "3002:3002"
+    environment:
+      - NODE_ENV=development
+
+  content:
+    build:
+      context: ./microfrontend/content
+      dockerfile: Dockerfile.frontend
+    ports:
+      - "3003:3003"
+    environment:
+      - NODE_ENV=development

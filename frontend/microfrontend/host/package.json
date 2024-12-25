@@ -1,10 +1,10 @@
 {
-  "name": "host",
+  "name": "content",
   "version": "1.0.0",
   "scripts": {
     "build": "webpack --mode production",
     "build:dev": "webpack --mode development",
-    "build:start": "cd dist && PORT=8080 npx serve",
+    "build:start": "cd dist && PORT=8082 npx serve",
     "start": "webpack serve --mode development",
     "start:live": "webpack serve --mode development --live-reload --hot"
   },

@@ -20,13 +20,21 @@ return { default: () => <div className='error'>Component is not available!</div>
 );
 
 const App = () => (
-    <div className="container">
-     <UsersControl></UsersControl>
-     <br></br>
-     <CardsControl></CardsControl>
-     <br></br>
-     <ContentControl></ContentControl>
-    </div>
+    <CurrentUserContext.Provider value={currentUser}>
+      <div className="page__content">
+        <Switch>
+          <ProtectedRoute
+            exact
+            path="/"
+            component={Main}
+            loggedIn={isLoggedIn}
+          />
+        </Switch>
+        <UsersControl></UsersControl>
+        <CardsControl></CardsControl>
+        <ContentControl></ContentControl>
+      </div>
+    </CurrentUserContext.Provider>
 );
 
 const rootElement = document.getElementById("app")

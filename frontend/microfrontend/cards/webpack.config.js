@@ -17,7 +17,7 @@ module.exports = (_, argv) => ({
   },
 
   devServer: {
-    port: 8083,
+    port: 3002,
     historyApiFallback: true,
     watchFiles: [path.resolve(__dirname, 'src')],
     onListening: function (devServer) {
@@ -65,10 +65,11 @@ module.exports = (_, argv) => ({
       name: "cards",
       filename: "remoteEntry.js",
       remotes: {
-        host: "host@http://localhost:8080/remoteEntry.js",
+        host: "host@http://localhost:3000/remoteEntry.js",
+        content: 'content@http://localhost:3003/remoteEntry.js',
       },
       exposes: {
-        './CardsControl': './src/components/CardsControl.js',
+        './CardsControl': './src/App.jsx',
         './AddPlacePopup': './src/components/AddPlacePopup.js',
         './Card': './src/components/Card.js',
         './ImagePopup': './src/components/ImagePopup.js',
