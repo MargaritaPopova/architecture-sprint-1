@@ -1,45 +1,47 @@
-import React, { lazy }  from "react";
+import React, { lazy, createContext, useState } from "react";
 import ReactDOM from "react-dom/client";
+import { Route, Switch } from "react-router-dom";
 
-import "./index.css";
+const CurrentUserContext = createContext();
 
+const App = () => {
+  const [currentUser, setCurrentUser] = useState(null);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-const UsersControl = lazy(() => import('users/UsersControl').catch(() => {
- return { default: () => <div className='error'>Component is not available!</div> };
-})
-);
+  const UsersControl = lazy(() =>
+    import("users/UsersControl").catch(() => ({
+      default: () => <div className="error">Users are not available!</div>,
+    }))
+  );
 
-const CardsControl = lazy(() => import('cards/CardsControl').catch(() => {
-return { default: () => <div className='error'>Component is not available!</div> };
-})
-);
+  const CardsControl = lazy(() =>
+    import("cards/CardsControl").catch(() => ({
+      default: () => <div className="error">Cards are not available!</div>,
+    }))
+  );
 
-const ContentControl = lazy(() => import('content/ContentControl').catch(() => {
-return { default: () => <div className='error'>Component is not available!</div> };
-})
-);
+  const ContentControl = lazy(() =>
+    import("content/ContentControl").catch(() => ({
+      default: () => <div className="error">Content is not available!</div>,
+    }))
+  );
 
-const App = () => (
-    <CurrentUserContext.Provider value={currentUser}>
+  return (
+    <CurrentUserContext.Provider value={{ currentUser, setCurrentUser, isLoggedIn, setIsLoggedIn }}>
       <div className="page__content">
-        <Switch>
-          <ProtectedRoute
-            exact
-            path="/"
-            component={Main}
-            loggedIn={isLoggedIn}
-          />
+        <UsersControl />
+        <CardsControl />
+        <ContentControl />
+          <Switch>
+            <Route path="/users" component={UsersControl} />
+            <Route path="/cards" component={CardsControl} />
+            <Route path="/content" component={ContentControl} />
         </Switch>
-        <UsersControl></UsersControl>
-        <CardsControl></CardsControl>
-        <ContentControl></ContentControl>
       </div>
     </CurrentUserContext.Provider>
-);
 
-const rootElement = document.getElementById("app")
-if (!rootElement) throw new Error("Failed to find the root element")
+  );
+};
 
-const root = ReactDOM.createRoot(rootElement)
-
-root.render(<App />)
+const root = ReactDOM.createRoot(document.getElementById("app"));
+root.render(<App />);

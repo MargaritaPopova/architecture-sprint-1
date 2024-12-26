@@ -66,7 +66,6 @@ module.exports = (_, argv) => ({
       filename: "remoteEntry.js",
       remotes: {
         host: "host@http://localhost:3000/remoteEntry.js",
-        content: 'content@http://localhost:3003/remoteEntry.js',
       },
       exposes: {
         './CardsControl': './src/App.jsx',

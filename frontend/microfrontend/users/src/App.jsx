@@ -1,4 +1,5 @@
 import React from "react";
+import { useContext } from "react";
 import { Route, useHistory, Switch } from "react-router-dom";
 import Header from "content/Header";
 import Footer from "content/Footer";
@@ -11,15 +12,16 @@ import Login from "../src/components/Login";
 import * as auth from "../src/utils/auth.js";
 
 function App() {
+  const { currentUser, isLoggedIn } = useContext(CurrentUserContext);
   const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] =
     React.useState(false);
   const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] =
     React.useState(false);
 
   // В корневом компоненте App создана стейт-переменная currentUser. Она используется в качестве значения для провайдера контекста.
-  const [currentUser, setCurrentUser] = React.useState({});
+  const [setCurrentUser] = React.useState({});
 
-  const [isLoggedIn, setIsLoggedIn] = React.useState(false);
+  const [setIsLoggedIn] = React.useState(false);
   //В компоненты добавлены новые стейт-переменные: email — в компонент App
   const [email, setEmail] = React.useState("");
 

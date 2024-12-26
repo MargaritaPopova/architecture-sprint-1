@@ -74,6 +74,7 @@ module.exports = (_, argv) => ({
         './ProtectedRoute': './src/components/ProtectedRoute.js',
         "./vendor": "./src/vendor",
         './CurrentUserContext': './src/contexts/CurrentUserContext.js',
+        './images': './src/images',
        },
       shared: {
         ...deps,
