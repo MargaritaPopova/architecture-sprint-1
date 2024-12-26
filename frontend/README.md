@@ -151,7 +151,7 @@
 В `users` вынесены компоненты `EditAvatarPopup`, `EditProfilePopup`, `Login`, `Register`, API `auth` и `api` для взаимодействия с 
 бэкендом `users`. 
 
-Приложение content содержит компоненты `Footer`, `Header`, `InfoTooltip`, `PopupWithForm`, стили для content, `footer`, `header`, `page`, `popup`.
+Приложение content содержит компоненты `Footer`, `Header`, `InfoTooltip`, `PopupWithForm`, стили для `content`, `footer`, `header`, `page`, `popup`.
 
 У главного микрофронтенда `host` есть доступ ко всем остальным (благодаря их настройкам `exposes`), и в основной своей 
 точке доступа `App.jsx` он собирает общее приложение
